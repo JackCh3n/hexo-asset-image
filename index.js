@@ -13,18 +13,16 @@ hexo.extend.filter.register('after_post_render', function(data){
     //获取开始位置 第三个 / 的位置 例如 https://nobige.cn/post/20170926-phpUniqueMark/ 前两个刚好是协议/
     var beginPos = getPosition(link, '/', 3) + 1;
 
-    //截取域名后的地址
-    link = link.substring(beginPos);
-
     /**
      * 对 about 页面进行特别的处理 index.html
      * about页面地址：   about/index.html
-     * index.html 长度为10
      */
-    if (link.substr(-10)="index.html") {
-      link=link.substring(0,link.length-10);
+    if(/.*\/index\.html$/.test(link)) {
+      var endPos = link.lastIndexOf('/');
+      link = link.substring(beginPos, endPos) + '/';
+    }else{
+      link = link.substring(beginPos);
     }
-    
     var toprocess = ['excerpt', 'more', 'content'];
     for(var i = 0; i < toprocess.length; i++){
       var key = toprocess[i];
