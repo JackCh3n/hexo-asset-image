@@ -37,8 +37,18 @@ Make sure `post_asset_folder: true` in your `_config.yml`.
 
 Just use `![logo](logo.jpg)` to insert `logo.jpg`.
 
+## Enable CDN
+
+`_config.yml` Add the following code to the file
+
+```
+img_cdn:
+  enable: true
+  cdn_domain: https://you.cdn.com/
+```
+
 # History
 
-2018-04-18: support hexo-abbrlink
-
-2019-06-05:删除多级目录,根据出现的问题进行小幅度的修改
+- 2018-04-18: support hexo-abbrlink
+- 2019-06-05:删除多级目录,根据出现的问题进行小幅度的修改
+- 2019-08-29:添加CDN模式

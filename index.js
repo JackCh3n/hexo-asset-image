@@ -9,6 +9,7 @@ function getPosition(str, m, i) {
 hexo.extend.filter.register('after_post_render', function(data){
   var config = hexo.config;
   if(config.post_asset_folder){
+    // link 为域名加文章链接，例 https://nobige.cn/post/20110926-phpUniqueMark/
     var link = data.permalink;
     //获取开始位置 第三个 / 的位置 例如 https://nobige.cn/post/20170926-phpUniqueMark/ 前两个刚好是协议/
     var beginPos = getPosition(link, '/', 3) + 1;
@@ -19,8 +20,10 @@ hexo.extend.filter.register('after_post_render', function(data){
      */
     if(/.*\/index\.html$/.test(link)) {
       var endPos = link.lastIndexOf('/');
+      // 文章页面链接，例 about/
       link = link.substring(beginPos, endPos) + '/';
     }else{
+      // 文章页面链接，例 post/20110926-phpUniqueMark/
       link = link.substring(beginPos);
     }
     var toprocess = ['excerpt', 'more', 'content'];
@@ -56,8 +59,9 @@ hexo.extend.filter.register('after_post_render', function(data){
             // if(srcArray.length > 1)
             // srcArray.shift();
             // src = srcArray.join('/');
-            $(this).attr('src', config.root + link + src);
-            console.info&&console.info("update link as:-->"+config.root + link + src);
+            var domain = config.img_cdn.enable ? config.img_cdn.cdn_domain : config.root
+            $(this).attr('src', domain + link + src);
+            console.info&&console.info("update link as:-->"+domain + link + src);
           }
         }else{
           console.info&&console.info("no src attr, skipped...");
