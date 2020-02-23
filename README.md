@@ -44,6 +44,7 @@ Just use `![logo](logo.jpg)` to insert `logo.jpg`.
 ```
 img_cdn:
   enable: true
+  debug: false
   cdn_domain: https://you.cdn.com/
 ```
 
@@ -52,3 +53,4 @@ img_cdn:
 - 2018-04-18: support hexo-abbrlink
 - 2019-06-05:删除多级目录,根据出现的问题进行小幅度的修改
 - 2019-08-29:添加CDN模式
+- 2020-02-23:可关日志

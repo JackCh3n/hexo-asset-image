@@ -61,7 +61,9 @@ hexo.extend.filter.register('after_post_render', function(data){
             // src = srcArray.join('/');
             var domain = config.img_cdn.enable ? config.img_cdn.cdn_domain : config.root
             $(this).attr('src', domain + link + src);
-            console.info&&console.info("update link as:-->"+domain + link + src);
+            if (config.img_cdn.debug) {
+                console.info&&console.info("update link as:-->"+domain + link + src);
+            }
           }
         }else{
           console.info&&console.info("no src attr, skipped...");
